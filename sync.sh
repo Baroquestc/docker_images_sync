@@ -34,12 +34,26 @@ while IFS= read -r image; do
         continue
     fi
 
-    name=$(echo "${image}" | cut -d '/' -f2)
-    tag=$(echo "${name}" | cut -d ':' -f2)
-    targetFullName=${TARGET_REGISTRY}/${TARGET_NAMESPACE}/${name}
+    # name=$(echo "${image}" | cut -d '/' -f2)
+    # tag=$(echo "${name}" | cut -d ':' -f2)
+    # targetFullName=${TARGET_REGISTRY}/${TARGET_NAMESPACE}/${name}
 
-    # 打阿里云的tag
-    docker tag "${image}" "${targetFullName}"
+    # # 打阿里云的tag
+    # docker tag "${image}" "${targetFullName}"
+
+    src="$image"
+    repo="${src%:*}"
+    tag="${src##*:}"
+    first="${repo%%/*}"
+    if [[ "$first" == *.* || "$first" == *:* || "$first" == "localhost" ]]; then
+    path="${repo#*/}"
+    else
+    path="$repo"
+    fi
+    targetFullName="${TARGET_REGISTRY}/${TARGET_NAMESPACE}/${path}:${tag}"
+
+    docker tag "${src}" "${targetFullName}"
+    
     tag_status=$?
 
     # 推送到阿里云
