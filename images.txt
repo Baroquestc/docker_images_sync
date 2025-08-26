@@ -1,1 +1,1 @@
-ghcr.io/coder/coder:v2.23.5-amd64
+harryliu888/cosyvoice:latest
