@@ -1,1 +1,1 @@
-ghcr.io/coder/coder:sha256-7098a543a569fa4127fee811d24162e2978c7325268c8bc2a4fdd0b8ad73ecf2.att
+ghcr.io/coder/coder:v2.23.5-amd64
