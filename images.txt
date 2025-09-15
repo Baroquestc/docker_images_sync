@@ -1,1 +1,1 @@
-b3log/siyuan:v3.3.1
+codercom/code-server:latest
